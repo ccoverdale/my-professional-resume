@@ -53,17 +53,8 @@ jobs:
             uses: aws-actions/configure-aws-credentials@v4 # More information on this action can be found below in the 'AWS Credentials' section
             with:
                 aws-region: us-east-1
-                role-to-assume: ${{secrets.AWS_ROLE}} 
-            - name: Deploy to ECS
-            run: echo "Deploy to ECS"
+                role-to-assume: ${{secrets.AWS_ROLE}}
+                - name: Deploy to ECS
+                run: echo "Deploy to ECS"
 
-            
-
-
-
-
-
-            
-
-
-
+                
