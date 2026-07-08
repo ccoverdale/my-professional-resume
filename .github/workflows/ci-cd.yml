@@ -23,7 +23,7 @@ jobs:
                 exit-code: 1
 
             - name: Build Docker Image
-              run: docker build -t 408949637394.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest .
+              run: docker build -t ${{secrets.ECR_REPO}}/my-repo:latest .
             - name: Scan image with Trivy
               uses: aquasecurity/trivy-action@v0.36.0
               with:
@@ -37,13 +37,13 @@ jobs:
               uses: aws-actions/configure-aws-credentials@v4 # More information on this action can be found below in the 'AWS Credentials' section
               with:
                 aws-region: us-east-1
-                role-to-assume: arn:aws:iam::408949637394:role/github-action-role
+                role-to-assume: ${{secrets.AWS_ROLE}}
             - name: Login to Amazon ECR
               id: login-ecr
               uses: aws-actions/amazon-ecr-login@v2
 
             - name: Push Image to ecr
-              run: docker push 408949637394.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
+              run: docker push ${{secrets.ECR_REPO}}/my-repo:latest
 
 
 
