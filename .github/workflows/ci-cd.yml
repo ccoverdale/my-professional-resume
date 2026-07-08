@@ -54,6 +54,6 @@ jobs:
               with:
                 aws-region: us-east-1
                 role-to-assume: ${{secrets.AWS_ROLE}}
-                - name: Deploy to ECS
-                run: echo "Deploy to ECS"
+            - name: Deploy to ECS
+              run: echo "Deploy to ECS"
 
