@@ -46,6 +46,7 @@ jobs:
               run: docker push ${{secrets.ECR_REPO}}/my-repo:latest
 
 Deploy_to_ecs:
+    needs: build_scan
     runs-on: ubuntu-latest
     steps:
          - name: Configure AWS credentials
@@ -53,8 +54,8 @@ Deploy_to_ecs:
               with:
                 aws-region: us-east-1
                 role-to-assume: ${{secrets.AWS_ROLE}} 
-        - name: Deploy to ECS
-          run: echo "Deploy to ECS"
+        -  name: Deploy to ECS
+           run: echo "Deploy to ECS"
 
 
 
