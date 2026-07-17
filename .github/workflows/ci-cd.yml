@@ -2,8 +2,8 @@ name: Build And Push to ECR
 
 on:
     push:
-        #pull_requests:
-        #branches: [ 'main', 'dev']
+        # pull_requests:
+        #  branches: [ 'main', 'dev']
         branches: [ 'main']
 permissions:
     id-token: write
@@ -11,10 +11,10 @@ permissions:
 
 jobs:
     build_scan:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-latest # the runner
         steps:
             - name: Checkout the Code
-              uses: actions/checkout@v7
+              uses: actions/checkout@v7 # downloads source code to the runner
             - name: Trivy Scan
               uses: aquasecurity/trivy-action@v0.36.0
               with:
@@ -27,7 +27,7 @@ jobs:
             - name: Scan image with Trivy
               uses: aquasecurity/trivy-action@v0.36.0
               with:
-                image-ref: 408949637394.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
+                image-ref: ${{secrets.ECR_REPO}}/my-repo:latest
                 format: table
                 exit-code: 0
                 ignore-unfixed: true
