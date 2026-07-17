@@ -55,5 +55,4 @@ jobs:
                 aws-region: us-east-1
                 role-to-assume: ${{secrets.AWS_ROLE}}
             - name: Deploy to ECS
-              run: echo "Deploy to ECS"
-
+              run: aws ecs update-service --cluster clusterResu --service serviceResu --force-new-deployment
